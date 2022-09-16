@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .container{
+        margin: 0;
+        width: 100%;
+            }
+            .header{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: purple;
+                color: whitesmoke;
+                padding: 2rem 8rem;
+                
+            }
+            .main-header{
+                font-size: 2.5rem;
+            }
+            .navbar{
+                width: 100%;
+                height: 3rem;
+                background: black;
+            }
+        .links{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            
+        }
+        .links a{
+            display: flex;
+            padding: 1rem 4rem;
+            text-decoration: none;
+            color: white;
+            font-size: 1.3rem;
+            transition: 0.5s;
+        }
+        .links a:hover{
+            background: purple;
+            color: white;
+            transition: 0.5s;
+                }
+                .table{
+                    display: flex;
+                    justify-content:center;
+                    align-items: center;
+                    padding:1rem 4rem;
+                }
+                a{
+                    padding: 10px;
+                    text-decoration: none;
+                    color: purple;
+                    font-size: 1rem;
+                    transition: 0.5s; 
+                }
+                input[type=submit] {
+                    width: 80%;
+                    background-color: purple;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  }
+                  
+               
+    </style>
+
+<body bgcolor=lightgray>
+    <div class="header">
+        <header class="main-header">
+            ADD NEW STUDENT
+            </header>
+</div>
+<div class="navbar">
+    <nav class="links">
+        <a href="{% url 'student_homepage' %}" > ALL STUDENTS</a></h2>
+         <a href="{% url 'welcome' %}" > HOMEPAGE</a>
+
+    </nav>
+</div>
+<div class=table>
+    <form action="" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <table  align=center height=150>
+            {{ form.as_table }}
+    
+</table>
+<input type="submit" value="ADD NEW STUDENT" onclick="return confirm('Are you sure  of the entered details?')">                
+    </form>
+</div>
+     
+</body>
+
+</html>

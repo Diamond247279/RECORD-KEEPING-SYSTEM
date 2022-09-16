@@ -1,0 +1,130 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .container{
+        margin: 0;
+        width: 100%;
+            }
+            .header{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: purple;
+                color: whitesmoke;
+                padding: 2rem 8rem;
+                
+            }
+            .main-header{
+                font-size: 2.5rem;
+            }
+            .navbar{
+                width: 100%;
+                height: 3rem;
+                background: black;
+            }
+        .links{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            
+        }
+        .links a{
+            display: flex;
+            padding: 1rem 4rem;
+            text-decoration: none;
+            color: white;
+            font-size: 1.3rem;
+            transition: 0.5s;
+        }
+        .links a:hover{
+            background: purple;
+            color: white;
+            transition: 0.5s;
+                }
+                .table{
+                    display: flex;
+                    justify-content:center;
+                    align-items: center;
+                }
+                a{
+                    padding: 10px;
+                    text-decoration: none;
+                    color: purple;
+                    font-size: 1rem;
+                    transition: 0.5s; 
+                }
+    </style>
+
+
+<body bgcolor=lightgray>
+    <div class="header">
+        <header class="main-header">
+            ALL STUDENTS IN THE SCHOOL
+            </header>
+</div>
+<div class="navbar">
+    <nav class="links">
+        <a href="{% url 'new_student' %}"> ADD NEW STUDENT</a>
+    <a href="{% url 'welcome' %}" align=center> HOMEPAGE</a>
+         
+
+    </nav>
+</div>
+<div class=table>
+    <table align=center>
+        <tr bgcolor=grey>
+            <th>SN</th>
+            <th>First_Name</th>
+            <th>Last_Name</th>
+            <th>Reg_No</th>
+            <th>Action</th>
+        
+        </tr>
+
+         {% for student in  student %} 
+        <tr bgcolor=white>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.regno }}</td>
+            <td> 
+                <a href="{% url 'delete_student' student.id %}"
+                    onclick="return confirm('Are you sure you want to delete the selected record ?')">DELETE</a>
+                -
+                <a href="{% url 'update_student' student.id %}">UPDATE</a>
+            </td> 
+        </tr>
+ {% endfor %} 
+    </table>
+</div>
+    
+    {% if messages %}
+
+    {% for message in messages  %}
+    <h4>{{ message }}</h4>
+    {% endfor %}
+
+    {% endif %}
+
+</body>
+
+</html>

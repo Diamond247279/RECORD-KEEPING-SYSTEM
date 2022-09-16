@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .container{
+        margin: 0;
+        width: 100%;
+            }
+            .header{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: purple;
+                color: whitesmoke;
+                padding: 2rem 8rem;
+                
+            }
+            .main-header{
+                font-size: 2.5rem;
+            }
+            .navbar{
+                width: 100%;
+                height: 3rem;
+                background: black;
+            }
+        .links{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            
+        }
+        .links a{
+            display: flex;
+            padding: 1rem 4rem;
+            text-decoration: none;
+            color: white;
+            font-size: 1.3rem;
+            transition: 0.5s;
+        }
+        .links a:hover{
+            background: purple;
+            color: white;
+            transition: 0.5s;
+                }
+                .table{
+                    display: flex;
+                    justify-content:center;
+                    align-items: center;
+                }
+                a{
+                    padding: 10px;
+                    text-decoration: none;
+                    color: purple;
+                    font-size: 1rem;
+                    transition: 0.5s; 
+                }
+    </style>
+
+
+<body bgcolor=lightgray>
+    <div class="header">
+        <header class="main-header">
+            ALL DEPARTMENTS IN THE SCHOOL
+            </header>
+</div>
+<div class="navbar">
+    <nav class="links">
+        <a href="{% url 'new_department' %}">ADD NEW DEPARTMENT</a>
+         <a href="{% url 'welcome' %}" > HOMEPAGE</a>
+
+    </nav>
+</div>
+<div class="table">
+    <table  align=center>
+        <tr bgcolor=grey>
+            <th>S/N</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Head</th>
+            <th>Action</th>
+        
+        </tr>
+         {% for department in  department %} 
+        <tr bgcolor=white>
+            <td >{{ forloop.counter }}</td>
+            <td>{{ department.name }}</td>
+            <td>{{ department.code }}</td>
+            <td>{{ department.head }}</td>
+            <td > 
+                <a href="{% url 'delete_department' department.id %}"
+                    onclick="return confirm('Are you sure you want to delete the selected record ?')">DELETE</a>
+                -
+                <a href="{% url 'update_department' department.id %}">UPDATE</a>
+            </td> 
+        </tr>
+ {% endfor %} 
+    </table>
+    </div>
+   
+    {% if messages %}
+
+    {% for message in messages  %}
+    <h4>{{ message }}</h4>
+    {% endfor %}
+
+    {% endif %}
+
+</body>
+
+</html>
